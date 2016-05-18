@@ -2,9 +2,9 @@
 if (!defined('IN_KKFRAME')) exit();
 
 class cloud {
-	const API_ROOT = 'http://api.ikk.me/v2/';
-	const API_ROOT_HTTPS = 'https://api.ikk.me/v2/';
-	const API_ROOT_SAE = 'https://kksignapi.sinaapp.com/';
+	const API_ROOT = 'http://api.iwch.me/v2/';
+	const API_ROOT_HTTPS = 'https://api.iwch.me/v2/';
+    const API_ROOT_SAE = 'https://sae-api.iwch.me/';
 	public static function init(){
 		list($id, $key) = self::_get_id_and_key();
 		if (!$id || !$key) define('CLOUD_NOT_INITED', true);

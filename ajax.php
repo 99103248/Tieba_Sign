@@ -12,7 +12,7 @@ switch($_GET['v']){
 		break;
 	case 'get-bind-status':
 		$data = get_baidu_userinfo($uid);
-		if($data['data']['user_portrait']) dsetcookie("avatar_{$uid}", 'http://tb.himg.baidu.com/sys/portrait/item/'.$data['data']['user_portrait']);
+		if($data['data']['user_portrait']) dsetcookie("avatar_{$uid}", 'https://api.iwch.me/images/?src=http://tb.himg.baidu.com/sys/portrait/item/'.$data['data']['user_portrait']);
 		break;
 	case 'get-setting':
 		$data = get_setting($uid);

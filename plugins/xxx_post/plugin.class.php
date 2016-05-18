@@ -210,7 +210,7 @@ EOF;
 				break;
 			case 'add-tieba' :
 				$tieba = $_POST ['xxx_post_add_tieba'];
-				$ch = curl_init ('http://tieba.baidu.com/f?kw='.urlencode(iconv("utf-8", "gbk", $tieba)).'&fr=index');
+				$ch = curl_init ('http://tieba.baidu.com/f?kw='.urlencode(iconv("utf-8", "utf-8", $tieba)).'&fr=index');
 				curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
 				$contents = curl_exec ( $ch );
 				curl_close ( $ch );
@@ -224,7 +224,7 @@ EOF;
 				}
 				preg_match ( '/fname="(.+?)"/', $contents, $fnames );
 				$unicode_name = urlencode($fnames [1]);
-				$fname = $fnames [1];
+				$fname = iconv("utf-8", "utf-8", $fnames [1]);
 				DB::insert ( 'xxx_post_posts', array (
 					'uid' => $uid,
 					'fid' => $fid,
@@ -251,11 +251,11 @@ EOF;
 					$data ['msgx'] = 0;
 					break;
 				}
-				preg_match ( '/fname="(.+?)"/', $contents, $fnames );
+                preg_match ( '/fname=\"(.+?)\"/', $contents, $fnames );
 				$unicode_name = urlencode($fnames [1]);
-				$fname = $fnames [1];
-				preg_match ( '/title:"(.*?)"/', $contents, $post_names );
-				$post_name = $post_names [1];
+				$fname = iconv("utf-8", "utf-8", $fnames [1]);
+                preg_match ( '/title:\s?"(.*?)\"/', $contents, $post_names );
+				$post_name = iconv("utf-8", "utf-8", $post_names [1]);
 				DB::insert ( 'xxx_post_posts', array (
 						'uid' => $uid,
 						'fid' => $fid,
